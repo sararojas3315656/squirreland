@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razas de ardillas — La Madriguera Ardilla</title>
+  <!-- favicon pixel art de Sara -->
+  <link rel="icon" type="image/png" sizes="16x16" href="squirreeeel-favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="squirreeeel-favicon-32.png">
+  <link rel="icon" type="image/png" href="squirreeeel-favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span><span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span>
+  <span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-hoja-arce'/></svg></span><span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span>
+
+  <header>
+    <nav>
+      <a class="brand" href="index.html"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
+      <a class="enlace" href="index.html">Inicio</a>
+      <a class="enlace" href="datos.html">Datos</a>
+      <a class="enlace" href="razas.html">Razas</a>
+      <a class="enlace" href="comida.html">Comida</a>
+      <a class="enlace" href="quiz.html">Quiz</a>
+      <a class="enlace" href="juego.html">Juego</a>
+    </nav>
+    <div class="barra-scroll"><i id="barra"></i></div>
+  </header>
+
+  <main>
+    <h1 class="titulo-pagina"><svg class='ico' aria-hidden='true'><use href='#i-mundo'/></svg> El reparto mundial de la esponjosidad</h1>
+    <p class="sub-pagina">Más de 200 especies en todos los continentes menos Australia y la Antártida (allí no les llegó la invitación). Estas son las seis más famosas del cine de ardillas. Selección con el visto bueno del jurado de la propia.</p>
+
+    <div class="grid-razas" id="razas"></div>
+  </main>
+
+  <footer>
+    <div class="pista">
+      <span class="motivo" style="left:6%"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span>
+      <span class="motivo" style="left:45%;animation-delay:0.9s"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span>
+      <span class="motivo" style="right:14%;animation-delay:1.7s"><svg class='ico' aria-hidden='true'><use href='#i-cacahuete'/></svg></span>
+      <span class="corredor"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg><svg class='ico' aria-hidden='true'><use href='#i-viento'/></svg></span>
+    </div>
+    <p class="firma"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg> La Madriguera Ardilla — solo ardillas, siempre ardillas.</p>
+  </footer>
+
+  <button class="volver-arriba" id="arriba" title="Subir"><svg class='ico' aria-hidden='true'><use href='#i-subir'/></svg></button>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="i-ardilla" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6"/><circle cx="16.6" cy="11.2" r="3.6"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1"/></symbol><symbol id="i-bellota" viewBox="0 0 24 24"><path d="M12 6.6 V3.6" stroke="#7a4e21" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M6.2 8.6 C 6.4 5.6, 17.6 5.6, 17.8 8.6 C 14.8 9.7, 9.2 9.7, 6.2 8.6 Z" fill="#a06a30"/><path d="M7.6 9.4 C 7.6 12.5, 9.4 16.6, 12 18.9 C 14.6 16.6, 16.4 12.5, 16.4 9.4 C 14.6 10, 9.4 10, 7.6 9.4 Z" fill="#c98a4b" stroke="#8a5426" stroke-width="1.2"/></symbol><symbol id="i-cacahuete" viewBox="0 0 24 24"><circle cx="8.6" cy="11.4" r="3.7" fill="#c4864f" stroke="#7a4e21" stroke-width="1.4"/><circle cx="15.2" cy="11.4" r="3.7" fill="#c4864f" stroke="#7a4e21" stroke-width="1.4"/><path d="M10.2 8.2 C 10.8 9.8, 13 9.8, 13.6 8.2" fill="none" stroke="#7a4e21" stroke-width="1.2"/><path d="M10.2 14.6 C 10.8 13, 13 13, 13.6 14.6" fill="none" stroke="#7a4e21" stroke-width="1.2"/></symbol><symbol id="i-hoja" viewBox="0 0 24 24"><path d="M12 3.4 C 5.6 5.2, 4.2 13.6, 12 20.6 C 19.8 13.6, 18.4 5.2, 12 3.4 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.4"/><path d="M12 5.8 V18.2" stroke="#dcebc4" stroke-width="1.5" stroke-linecap="round" fill="none"/></symbol><symbol id="i-hoja-arce" viewBox="0 0 24 24"><g transform="rotate(-6 12 10)"><path d="M12 2.8 L14.4 7.4 L19.8 7.2 L15.8 10.6 L18.2 16 L12 13.2 L5.8 16 L8.2 10.6 L4.2 7.2 L9.6 7.4 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.3" stroke-linejoin="round"/></g><path d="M12 13.2 V19.8" stroke="#a06a30" stroke-width="2.2" stroke-linecap="round" fill="none"/></symbol><symbol id="i-arbol" viewBox="0 0 24 24"><rect x="10.5" y="13" width="3" height="5.6" rx="1.3" fill="#7a4e21"/><circle cx="8.4" cy="9.4" r="3.8" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2"/><circle cx="15.6" cy="8.8" r="4.2" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2"/><circle cx="11.9" cy="6.4" r="4.3" fill="#5aa84d" stroke="#2f6b2c" stroke-width="1.2"/></symbol><symbol id="i-pino" viewBox="0 0 24 24"><path d="M12 2.6 L3.6 10.4 H20.4 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 8.4 L3.2 16.4 H20.8 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2" stroke-linejoin="round"/><rect x="10.3" y="15.8" width="3.4" height="5" rx="1.3" fill="#7a4e21"/></symbol><symbol id="i-seta" viewBox="0 0 24 24"><path d="M4.6 9.4 C 4.6 4.6, 19.4 4.6, 19.4 9.4 C 16.4 10.8, 7.6 10.8, 4.6 9.4 Z" fill="#b1522e" stroke="#8a3c1e" stroke-width="1.3"/><circle cx="9.2" cy="6.8" r="1.4" fill="#f6e3bd"/><circle cx="14.8" cy="7.4" r="1.3" fill="#f6e3bd"/><rect x="10.2" y="9.4" width="3.6" height="7.6" rx="1.7" fill="#f6e3bd" stroke="#d8c19a" stroke-width="1.1"/></symbol><symbol id="i-parapente" viewBox="0 0 24 24"><path d="M4 7.4 C 4 2.8, 20 2.8, 20 7.4 C 13.8 5.2, 10.2 5.2, 4 7.4 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.2"/><path d="M5.8 7.4 L9.4 12.4 M18.2 7.4 L14.6 12.4" fill="none" stroke="#7a4e21" stroke-width="1.5"/><path d="M14.6 14 C 16 13.4, 16.6 12, 16 10.8" fill="none" stroke="#b97a3e" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="14.8" r="2.7" fill="#b97a3e"/><circle cx="12" cy="11.9" r="2" fill="#b97a3e"/></symbol><symbol id="i-huella" viewBox="0 0 24 24"><circle cx="4.8" cy="9" r="1.8" fill="#7a4e21"/><circle cx="9.4" cy="7.8" r="1.8" fill="#7a4e21"/><circle cx="13.8" cy="7.8" r="1.8" fill="#7a4e21"/><circle cx="18.4" cy="9" r="1.8" fill="#7a4e21"/><ellipse cx="11.8" cy="16.6" rx="5" ry="4" fill="#7a4e21"/></symbol><symbol id="i-rama" viewBox="0 0 24 24"><path d="M3.4 19.4 C 9 15.4, 15 12.4, 21.4 8.6" fill="none" stroke="#7a4e21" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="9.4" cy="13.4" rx="3.2" ry="1.7" transform="rotate(-38 9.4 13.4)" fill="#4c9341"/><ellipse cx="15.8" cy="10.4" rx="3.4" ry="1.8" transform="rotate(-28 15.8 10.4)" fill="#4c9341"/><ellipse cx="18.8" cy="8.8" rx="2.7" ry="1.5" transform="rotate(-22 18.8 8.8)" fill="#7db356"/></symbol><symbol id="i-brote" viewBox="0 0 24 24"><path d="M12 18.6 V8.6" stroke="#2f6b2c" stroke-width="2.2" stroke-linecap="round" fill="none"/><ellipse cx="7.6" cy="7" rx="3" ry="1.7" transform="rotate(-30 7.6 7)" fill="#4c9341"/><ellipse cx="16.2" cy="8.4" rx="3.2" ry="1.8" transform="rotate(25 16.2 8.4)" fill="#7db356"/><path d="M8.8 20.6 H15.2" stroke="#a06a30" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="i-mundo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" fill="none" stroke="#4c9341" stroke-width="2.4"/><ellipse cx="12" cy="12" rx="3.4" ry="8.4" fill="none" stroke="#4c9341" stroke-width="1.5"/><path d="M4.4 12 H19.6" stroke="#4c9341" stroke-width="1.8"/></symbol><symbol id="i-corazon" viewBox="0 0 24 24"><path d="M12 19.8 C 4.2 14.2, 2.6 7.8, 6.6 5.6 C 9 4.2, 12 6, 12 8.4 C 12 6, 15 4.2, 17.4 5.6 C 21.4 7.8, 19.8 14.2, 12 19.8 Z" fill="#d9613f"/></symbol><symbol id="i-copo" viewBox="0 0 24 24"><path d="M12 2.4 V21.6 M2.4 12 H21.6 M5.4 5.4 L18.6 18.6 M18.6 5.4 L5.4 18.6" fill="none" stroke="#9cc4d8" stroke-width="2.2" stroke-linecap="round"/></symbol><symbol id="i-gota" viewBox="0 0 24 24"><path d="M12 2.6 C 16.8 9.2, 19 13.4, 19 15.8 C 19 19, 15.9 21.4, 12 21.4 C 8.1 21.4, 5 19, 5 15.8 C 5 13.4, 7.2 9.2, 12 2.6 Z" fill="#8fb4c8" stroke="#5f8ca6" stroke-width="1.3"/><path d="M7.4 17.8 C 7.4 15.6, 9 13.4, 11.4 13" fill="none" stroke="#eaf4fa" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="i-flor" viewBox="0 0 24 24"><circle cx="12" cy="6.6" r="2.7" fill="#ffd37a"/><circle cx="6.9" cy="13.7" r="2.7" fill="#ffd37a"/><circle cx="6.9" cy="10.3" r="2.7" fill="#ffd37a"/><circle cx="17.1" cy="10.3" r="2.7" fill="#ffd37a"/><circle cx="17.1" cy="13.7" r="2.7" fill="#ffd37a"/><circle cx="12" cy="12" r="2.9" fill="#e08a3c"/></symbol><symbol id="i-diente" viewBox="0 0 24 24"><path d="M7 6.4 C 7 4.2, 17 4.2, 17 6.4 L 17.2 11 C 16.4 13.8, 14.6 15.6, 13.4 18.4 L 12 15.2 L 10.6 18.4 C 9.4 15.6, 7.6 13.8, 6.8 11 Z" fill="#faf3dd" stroke="#d8c9a8" stroke-width="1.4"/></symbol><symbol id="i-cola" viewBox="0 0 24 24"><path d="M5.6 19.6 C 3.2 13.6, 7.6 7.6, 13 9.2 C 16.6 10.2, 17.6 14.4, 14.8 16.6" fill="none" stroke="#b97a3e" stroke-width="4.4" stroke-linecap="round"/></symbol><symbol id="i-tableta" viewBox="0 0 24 24"><rect x="3.6" y="6.6" width="16.8" height="10.8" rx="2.2" fill="#9a6a34" stroke="#7a4e21" stroke-width="1.4"/><path d="M9 7.2 V16.8 M15 7.2 V16.8 M3.6 12 H20.4" stroke="#7a4e21" stroke-width="1.1"/></symbol><symbol id="i-aviso" viewBox="0 0 24 24"><path d="M12 3.4 L22 19.8 H2 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.4" stroke-linejoin="round"/><rect x="10.9" y="8.6" width="2.2" height="5.4" rx="1.1" fill="#fff8e0"/><circle cx="12" cy="16.6" r="1.3" fill="#fff8e0"/></symbol><symbol id="i-si" viewBox="0 0 24 24"><path d="M4.8 12.6 L10 18 L19.2 6" fill="none" stroke="#2f6b2c" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-no" viewBox="0 0 24 24"><path d="M6.6 6.6 L17.4 17.4 M17.4 6.6 L6.6 17.4" fill="none" stroke="#d9613f" stroke-width="3.4" stroke-linecap="round"/></symbol><symbol id="i-subir" viewBox="0 0 24 24"><path d="M12 3.2 L3.8 11.4 H7.4 V16.6 H16.6 V11.4 H20.2 Z"/></symbol><symbol id="i-flecha" viewBox="0 0 24 24"><path d="M3.4 12 H15.6 M10.4 6.8 L15.6 12 L10.4 17.2" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-viento" viewBox="0 0 24 24"><path d="M4.4 7.6 Q 8 7.4 9.2 6 M3.2 12 Q 8.6 12 10.6 10.6 M5.2 16.4 Q 10.6 16.6 12.8 15.2" fill="none" stroke-width="2.4" stroke-linecap="round"/></symbol><symbol id="i-roja" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#b1522e" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#b1522e" stroke="#8a4a24" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#f6e3bd"/><circle cx="16.6" cy="11.2" r="3.6" fill="#b1522e" stroke="#8a4a24" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#b1522e" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-gris" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#7d848e" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#7d848e" stroke="#5d636d" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#efeee7"/><circle cx="16.6" cy="11.2" r="3.6" fill="#7d848e" stroke="#5d636d" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#7d848e" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-voladora" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#6b4f3a" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#6b4f3a" stroke="#4a3a28" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#eadcb9"/><circle cx="16.6" cy="11.2" r="3.6" fill="#6b4f3a" stroke="#4a3a28" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#6b4f3a" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/><path d="M13.2 13.2 C 17 13.8, 18.8 15.8, 19 19" fill="none" stroke="#b97a3e" stroke-width="3.6" stroke-linecap="round"/></symbol><symbol id="i-tierra" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#a06a30" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#a06a30" stroke="#7a4e21" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#e8d9b0"/><circle cx="16.6" cy="11.2" r="3.6" fill="#a06a30" stroke="#7a4e21" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#a06a30" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-negra" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#3b3b44" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#3b3b44" stroke="#20202a" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#5a5a63"/><circle cx="16.6" cy="11.2" r="3.6" fill="#3b3b44" stroke="#20202a" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#3b3b44" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#c9c9d2"/><circle cx="20" cy="11.9" r="0.85" fill="#c9c9d2"/></symbol><symbol id="i-prevost" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#1f1f26" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#1f1f26" stroke="#111118" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#e08a3c"/><circle cx="16.6" cy="11.2" r="3.6" fill="#1f1f26" stroke="#111118" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#1f1f26" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#0e0e14"/><circle cx="20" cy="11.9" r="0.85" fill="#0e0e14"/><ellipse cx="17.9" cy="11.6" rx="1.9" ry="2.1" fill="#f6e3bd"/></symbol></defs></svg>
+  <script>
+    const RAZAS = [
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-roja'/></svg>",
+        nombre: "Ardilla roja · Sciurus vulgaris",
+        tags: ["Europa", "Cola gigante", "Penacho invernal"],
+        texto: "La clásica europea, de pelaje rojizo que va del castaño al casi negro. En invierno le crecen penachos en las orejas que parecen antenas de regalo. En Reino Unido solo resiste el 4% frente a la invasión gris: está en modo resistencia.",
+        datos: "250–400 g · salta hasta 4 m · fan nº1 de las piñas"
+      },
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-gris'/></svg>",
+        nombre: "Ardilla gris · Sciurus carolinensis",
+        tags: ["América del Norte", "Invasora de Europa", "Imbatible"],
+        texto: "La reina de los parques urbanos. Comió mejor que la roja, colonizó media Europa y ni se inmuta. Abre comederos, cruza cables y domina la técnica del 'esconder y fingir' contra las ladronas de alijo. De las chirriaditas, que decimos acá.",
+        datos: "400–600 g · hasta 12 años en ciudad <svg class='ico' aria-hidden='true'><use href='#i-arbol'/></svg>"
+      },
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-voladora'/></svg>",
+        nombre: "Ardilla voladora · Pteromyini",
+        tags: ["Planea 90 m", "Nocturna", "Capita de piel"],
+        texto: "Técnicamente no vuela. Díselo a su cara. Extiende el patagio (piel entre patas y muñecas) y planea de madrugada de árbol en árbol, con reflejos de ojos que brillan en la sombra.",
+        datos: "planeo récord: 90 m · horario: madrugada"
+      },
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-tierra'/></svg>",
+        nombre: "Ardilla de tierra · Marmotini",
+        tags: ["Madrigueras", "Cola corta", "Vigilante"],
+        texto: "La ardilla-foca del suelo: cuerpo rechoncho, cola corta y túneles con varias salidas. Son las de las fotos erguidas vigilando el horizonte: un pitido y todos desaparecen al refugio en 0,2 segundos.",
+        datos: "túneles de hasta 10 m · habitan praderas y estepas"
+      },
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-negra'/></svg>",
+        nombre: "Ardilla negra",
+        tags: ["Variedad de la gris", "Megaciudades", "Elegante"],
+        texto: "No es especie propia: es la mutación melánica de la gris común. Se adaptó tan bien al frío urbano que en algunas ciudades es mayoría absoluta. Toda la actitud de la gris, con traje de gala.",
+        datos: "genética melanina · reinota en parques fríos"
+      },
+      {
+        emoji: "<svg class='ico' aria-hidden='true'><use href='#i-prevost'/></svg>",
+        nombre: "Ardilla de Prevost · Callosciurus prevostii",
+        tags: ["Selva del sudeste asiático", "Arcoíris", "Frutos tropicales"],
+        texto: "Vive en el dosel tropical con disfraz de arcoíris: negro, blanco y naranja intenso. Las llamaradas de color dividen el cuerpo en tres manchas y le ayudan a localizarse en la penumbra verde.",
+        datos: "casa: dosel tropical · dieta: fruta a porrón"
+      }
+    ];
+
+    document.getElementById("razas").innerHTML = RAZAS.map(r => `
+      <article class="ficha-raza revelar">
+        <span class="zona-emoji">${r.emoji}</span>
+        <h3>${r.nombre}</h3>
+        <div class="tags">${r.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        <p>${r.texto}</p>
+        <p class="dato-chico">${r.datos}</p>
+      </article>`).join("");
+
+    const barra = document.getElementById("barra");
+    addEventListener("scroll", () => {
+      const h = document.documentElement;
+      barra.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+      document.getElementById("arriba").classList.toggle("visible", h.scrollTop > 600);
+    }, { passive: true });
+    document.getElementById("arriba").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+    const obs = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".revelar").forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

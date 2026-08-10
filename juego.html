@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Gran Recolecta — La Madriguera Ardilla</title>
+  <!-- favicon pixel art de Sara -->
+  <link rel="icon" type="image/png" sizes="16x16" href="squirreeeel-favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="squirreeeel-favicon-32.png">
+  <link rel="icon" type="image/png" href="squirreeeel-favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-hoja-px'/></svg></span><span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg></span>
+  <span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-hoja-naranja-px'/></svg></span><span class="hoja-cae"><svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg></span>
+
+  <header>
+    <nav>
+      <a class="brand" href="index.html"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
+      <a class="enlace" href="index.html">Inicio</a>
+      <a class="enlace" href="datos.html">Datos</a>
+      <a class="enlace" href="razas.html">Razas</a>
+      <a class="enlace" href="comida.html">Comida</a>
+      <a class="enlace" href="quiz.html">Quiz</a>
+      <a class="enlace" href="juego.html">Juego</a>
+    </nav>
+    <div class="barra-scroll"><i id="barra"></i></div>
+  </header>
+
+  <main>
+    <h1 class="titulo-pagina"><svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg> La Gran Recolecta</h1>
+    <p class="sub-pagina">El invierno llega y la despensa está vacía. Atrapa bellotas antes de que toquen el suelo. 6 seguidas = combo ×2. A partir de 30 segundos, la tormenta de otoño arremete. Pero ojo: también llueve chocolate venenoso. Un mordisco = -1 corazón. El récord vive en tu navegador.</p>
+
+    <div class="caja-juego">
+      <h2 style="color:#ffd37a;margin-bottom:0.2rem;text-align:center"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg> Despensa de invierno</h2>
+      <div class="marcadores">
+        <span>Bellotas: <strong id="cuenta">0</strong></span>
+        <span>Combo: <strong id="combo">×1</strong></span>
+        <span>Tiempo: <strong id="tiempo">0s</strong></span>
+        <span>Récord: <strong id="record">0</strong></span>
+        <span>Vidas: <strong id="vidas"></strong></span>
+      </div>
+
+      <div class="zona-juego" id="zona">
+        <span class="flotador" style="left:8%;bottom:48%;animation-delay:0.5s"><svg class='ico' aria-hidden='true'><use href='#i-hoja-px'/></svg></span>
+        <span class="flotador" style="right:6%;bottom:52%;animation-delay:1.3s"><svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg></span>
+        <span class="ardilla-sprite" id="ardilla"><img id="ardilla-img" alt="Ardilla" draggable="false"></span>
+        <div class="frondas"></div>
+      </div>
+
+      <div class="controles">
+        <button class="btn btn-verde" onclick="empezar()" id="btn-empezar"><span class="aguijon"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span> Empezar partida</button>
+        <button class="btn btn-naranja" onclick="parar(true)" id="btn-parar" style="display:none"><span class="aguijon"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> Parar</button>
+      </div>
+      <p class="mensajito" id="mensajito">Haz clic en la zona de juego para recolectar. Al suelo, adiós bellota y adiós combo. Y jamás trague chocolate, ni por el chiras.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="pista">
+      <span class="motivo" style="left:4%"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span>
+      <span class="motivo" style="left:38%;animation-delay:0.8s"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span>
+      <span class="motivo" style="right:10%;animation-delay:1.6s"><svg class='ico' aria-hidden='true'><use href='#i-cacahuete'/></svg></span>
+      <span class="corredor"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg><svg class='ico' aria-hidden='true'><use href='#i-viento'/></svg></span>
+    </div>
+    <p class="firma"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg> La Madriguera Ardilla — solo ardillas, siempre ardillas.</p>
+  </footer>
+
+  <button class="volver-arriba" id="arriba" title="Subir"><svg class='ico' aria-hidden='true'><use href='#i-subir'/></svg></button>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="i-ardilla" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6"/><circle cx="16.6" cy="11.2" r="3.6"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1"/></symbol><symbol id="i-bellota" viewBox="0 0 24 24"><path d="M12 6.6 V3.6" stroke="#7a4e21" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M6.2 8.6 C 6.4 5.6, 17.6 5.6, 17.8 8.6 C 14.8 9.7, 9.2 9.7, 6.2 8.6 Z" fill="#a06a30"/><path d="M7.6 9.4 C 7.6 12.5, 9.4 16.6, 12 18.9 C 14.6 16.6, 16.4 12.5, 16.4 9.4 C 14.6 10, 9.4 10, 7.6 9.4 Z" fill="#c98a4b" stroke="#8a5426" stroke-width="1.2"/></symbol><symbol id="i-cacahuete" viewBox="0 0 24 24"><circle cx="8.6" cy="11.4" r="3.7" fill="#c4864f" stroke="#7a4e21" stroke-width="1.4"/><circle cx="15.2" cy="11.4" r="3.7" fill="#c4864f" stroke="#7a4e21" stroke-width="1.4"/><path d="M10.2 8.2 C 10.8 9.8, 13 9.8, 13.6 8.2" fill="none" stroke="#7a4e21" stroke-width="1.2"/><path d="M10.2 14.6 C 10.8 13, 13 13, 13.6 14.6" fill="none" stroke="#7a4e21" stroke-width="1.2"/></symbol><symbol id="i-hoja" viewBox="0 0 24 24"><path d="M12 3.4 C 5.6 5.2, 4.2 13.6, 12 20.6 C 19.8 13.6, 18.4 5.2, 12 3.4 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.4"/><path d="M12 5.8 V18.2" stroke="#dcebc4" stroke-width="1.5" stroke-linecap="round" fill="none"/></symbol><symbol id="i-hoja-arce" viewBox="0 0 24 24"><g transform="rotate(-6 12 10)"><path d="M12 2.8 L14.4 7.4 L19.8 7.2 L15.8 10.6 L18.2 16 L12 13.2 L5.8 16 L8.2 10.6 L4.2 7.2 L9.6 7.4 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.3" stroke-linejoin="round"/></g><path d="M12 13.2 V19.8" stroke="#a06a30" stroke-width="2.2" stroke-linecap="round" fill="none"/></symbol><symbol id="i-arbol" viewBox="0 0 24 24"><rect x="10.5" y="13" width="3" height="5.6" rx="1.3" fill="#7a4e21"/><circle cx="8.4" cy="9.4" r="3.8" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2"/><circle cx="15.6" cy="8.8" r="4.2" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2"/><circle cx="11.9" cy="6.4" r="4.3" fill="#5aa84d" stroke="#2f6b2c" stroke-width="1.2"/></symbol><symbol id="i-pino" viewBox="0 0 24 24"><path d="M12 2.6 L3.6 10.4 H20.4 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 8.4 L3.2 16.4 H20.8 Z" fill="#4c9341" stroke="#2f6b2c" stroke-width="1.2" stroke-linejoin="round"/><rect x="10.3" y="15.8" width="3.4" height="5" rx="1.3" fill="#7a4e21"/></symbol><symbol id="i-seta" viewBox="0 0 24 24"><path d="M4.6 9.4 C 4.6 4.6, 19.4 4.6, 19.4 9.4 C 16.4 10.8, 7.6 10.8, 4.6 9.4 Z" fill="#b1522e" stroke="#8a3c1e" stroke-width="1.3"/><circle cx="9.2" cy="6.8" r="1.4" fill="#f6e3bd"/><circle cx="14.8" cy="7.4" r="1.3" fill="#f6e3bd"/><rect x="10.2" y="9.4" width="3.6" height="7.6" rx="1.7" fill="#f6e3bd" stroke="#d8c19a" stroke-width="1.1"/></symbol><symbol id="i-parapente" viewBox="0 0 24 24"><path d="M4 7.4 C 4 2.8, 20 2.8, 20 7.4 C 13.8 5.2, 10.2 5.2, 4 7.4 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.2"/><path d="M5.8 7.4 L9.4 12.4 M18.2 7.4 L14.6 12.4" fill="none" stroke="#7a4e21" stroke-width="1.5"/><path d="M14.6 14 C 16 13.4, 16.6 12, 16 10.8" fill="none" stroke="#b97a3e" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="14.8" r="2.7" fill="#b97a3e"/><circle cx="12" cy="11.9" r="2" fill="#b97a3e"/></symbol><symbol id="i-huella" viewBox="0 0 24 24"><circle cx="4.8" cy="9" r="1.8" fill="#7a4e21"/><circle cx="9.4" cy="7.8" r="1.8" fill="#7a4e21"/><circle cx="13.8" cy="7.8" r="1.8" fill="#7a4e21"/><circle cx="18.4" cy="9" r="1.8" fill="#7a4e21"/><ellipse cx="11.8" cy="16.6" rx="5" ry="4" fill="#7a4e21"/></symbol><symbol id="i-rama" viewBox="0 0 24 24"><path d="M3.4 19.4 C 9 15.4, 15 12.4, 21.4 8.6" fill="none" stroke="#7a4e21" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="9.4" cy="13.4" rx="3.2" ry="1.7" transform="rotate(-38 9.4 13.4)" fill="#4c9341"/><ellipse cx="15.8" cy="10.4" rx="3.4" ry="1.8" transform="rotate(-28 15.8 10.4)" fill="#4c9341"/><ellipse cx="18.8" cy="8.8" rx="2.7" ry="1.5" transform="rotate(-22 18.8 8.8)" fill="#7db356"/></symbol><symbol id="i-brote" viewBox="0 0 24 24"><path d="M12 18.6 V8.6" stroke="#2f6b2c" stroke-width="2.2" stroke-linecap="round" fill="none"/><ellipse cx="7.6" cy="7" rx="3" ry="1.7" transform="rotate(-30 7.6 7)" fill="#4c9341"/><ellipse cx="16.2" cy="8.4" rx="3.2" ry="1.8" transform="rotate(25 16.2 8.4)" fill="#7db356"/><path d="M8.8 20.6 H15.2" stroke="#a06a30" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="i-mundo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" fill="none" stroke="#4c9341" stroke-width="2.4"/><ellipse cx="12" cy="12" rx="3.4" ry="8.4" fill="none" stroke="#4c9341" stroke-width="1.5"/><path d="M4.4 12 H19.6" stroke="#4c9341" stroke-width="1.8"/></symbol><symbol id="i-corazon" viewBox="0 0 24 24"><path d="M12 19.8 C 4.2 14.2, 2.6 7.8, 6.6 5.6 C 9 4.2, 12 6, 12 8.4 C 12 6, 15 4.2, 17.4 5.6 C 21.4 7.8, 19.8 14.2, 12 19.8 Z" fill="#d9613f"/></symbol><symbol id="i-copo" viewBox="0 0 24 24"><path d="M12 2.4 V21.6 M2.4 12 H21.6 M5.4 5.4 L18.6 18.6 M18.6 5.4 L5.4 18.6" fill="none" stroke="#9cc4d8" stroke-width="2.2" stroke-linecap="round"/></symbol><symbol id="i-gota" viewBox="0 0 24 24"><path d="M12 2.6 C 16.8 9.2, 19 13.4, 19 15.8 C 19 19, 15.9 21.4, 12 21.4 C 8.1 21.4, 5 19, 5 15.8 C 5 13.4, 7.2 9.2, 12 2.6 Z" fill="#8fb4c8" stroke="#5f8ca6" stroke-width="1.3"/><path d="M7.4 17.8 C 7.4 15.6, 9 13.4, 11.4 13" fill="none" stroke="#eaf4fa" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="i-flor" viewBox="0 0 24 24"><circle cx="12" cy="6.6" r="2.7" fill="#ffd37a"/><circle cx="6.9" cy="13.7" r="2.7" fill="#ffd37a"/><circle cx="6.9" cy="10.3" r="2.7" fill="#ffd37a"/><circle cx="17.1" cy="10.3" r="2.7" fill="#ffd37a"/><circle cx="17.1" cy="13.7" r="2.7" fill="#ffd37a"/><circle cx="12" cy="12" r="2.9" fill="#e08a3c"/></symbol><symbol id="i-diente" viewBox="0 0 24 24"><path d="M7 6.4 C 7 4.2, 17 4.2, 17 6.4 L 17.2 11 C 16.4 13.8, 14.6 15.6, 13.4 18.4 L 12 15.2 L 10.6 18.4 C 9.4 15.6, 7.6 13.8, 6.8 11 Z" fill="#faf3dd" stroke="#d8c9a8" stroke-width="1.4"/></symbol><symbol id="i-cola" viewBox="0 0 24 24"><path d="M5.6 19.6 C 3.2 13.6, 7.6 7.6, 13 9.2 C 16.6 10.2, 17.6 14.4, 14.8 16.6" fill="none" stroke="#b97a3e" stroke-width="4.4" stroke-linecap="round"/></symbol><symbol id="i-tableta" viewBox="0 0 24 24"><rect x="3.6" y="6.6" width="16.8" height="10.8" rx="2.2" fill="#9a6a34" stroke="#7a4e21" stroke-width="1.4"/><path d="M9 7.2 V16.8 M15 7.2 V16.8 M3.6 12 H20.4" stroke="#7a4e21" stroke-width="1.1"/></symbol><symbol id="i-aviso" viewBox="0 0 24 24"><path d="M12 3.4 L22 19.8 H2 Z" fill="#e08a3c" stroke="#b96a22" stroke-width="1.4" stroke-linejoin="round"/><rect x="10.9" y="8.6" width="2.2" height="5.4" rx="1.1" fill="#fff8e0"/><circle cx="12" cy="16.6" r="1.3" fill="#fff8e0"/></symbol><symbol id="i-si" viewBox="0 0 24 24"><path d="M4.8 12.6 L10 18 L19.2 6" fill="none" stroke="#2f6b2c" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-no" viewBox="0 0 24 24"><path d="M6.6 6.6 L17.4 17.4 M17.4 6.6 L6.6 17.4" fill="none" stroke="#d9613f" stroke-width="3.4" stroke-linecap="round"/></symbol><symbol id="i-subir" viewBox="0 0 24 24"><path d="M12 3.2 L3.8 11.4 H7.4 V16.6 H16.6 V11.4 H20.2 Z"/></symbol><symbol id="i-flecha" viewBox="0 0 24 24"><path d="M3.4 12 H15.6 M10.4 6.8 L15.6 12 L10.4 17.2" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-viento" viewBox="0 0 24 24"><path d="M4.4 7.6 Q 8 7.4 9.2 6 M3.2 12 Q 8.6 12 10.6 10.6 M5.2 16.4 Q 10.6 16.6 12.8 15.2" fill="none" stroke-width="2.4" stroke-linecap="round"/></symbol><symbol id="i-roja" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#b1522e" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#b1522e" stroke="#8a4a24" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#f6e3bd"/><circle cx="16.6" cy="11.2" r="3.6" fill="#b1522e" stroke="#8a4a24" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#b1522e" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-gris" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#7d848e" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#7d848e" stroke="#5d636d" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#efeee7"/><circle cx="16.6" cy="11.2" r="3.6" fill="#7d848e" stroke="#5d636d" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#7d848e" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-voladora" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#6b4f3a" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#6b4f3a" stroke="#4a3a28" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#eadcb9"/><circle cx="16.6" cy="11.2" r="3.6" fill="#6b4f3a" stroke="#4a3a28" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#6b4f3a" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/><path d="M13.2 13.2 C 17 13.8, 18.8 15.8, 19 19" fill="none" stroke="#b97a3e" stroke-width="3.6" stroke-linecap="round"/></symbol><symbol id="i-tierra" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#a06a30" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#a06a30" stroke="#7a4e21" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#e8d9b0"/><circle cx="16.6" cy="11.2" r="3.6" fill="#a06a30" stroke="#7a4e21" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#a06a30" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#3a2a18"/><circle cx="20" cy="11.9" r="0.85" fill="#3a2a18"/></symbol><symbol id="i-negra" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#3b3b44" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#3b3b44" stroke="#20202a" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#5a5a63"/><circle cx="16.6" cy="11.2" r="3.6" fill="#3b3b44" stroke="#20202a" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#3b3b44" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#c9c9d2"/><circle cx="20" cy="11.9" r="0.85" fill="#c9c9d2"/></symbol><symbol id="i-prevost" viewBox="0 0 24 24"><path d="M5.2 20 C 2.6 13, 8 5.2, 13.4 7.6 C 15.9 8.7, 16.2 12.2, 13.6 13.4" fill="none" stroke="#1f1f26" stroke-width="5" stroke-linecap="round"/><circle cx="13.4" cy="16.2" r="4.6" fill="#1f1f26" stroke="#111118" stroke-width="1.3"/><circle cx="13.4" cy="17.6" r="2.8" fill="#e08a3c"/><circle cx="16.6" cy="11.2" r="3.6" fill="#1f1f26" stroke="#111118" stroke-width="1.3"/><path d="M15.6 8.2 Q15.3 5.6 16.6 4.6" fill="none" stroke="#1f1f26" stroke-width="2.2" stroke-linecap="round"/><circle cx="18.2" cy="10.6" r="1" fill="#0e0e14"/><circle cx="20" cy="11.9" r="0.85" fill="#0e0e14"/><ellipse cx="17.9" cy="11.6" rx="1.9" ry="2.1" fill="#f6e3bd"/></symbol><symbol id="i-bellota-px" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M7 0h2v1h-2z" fill="#7a4e21"/><path d="M6 1h4v1h-4z" fill="#7a4e21"/><path d="M2 2h10v1h-10z" fill="#7a4e21"/><path d="M2 3h10v1h-10z" fill="#7a4e21"/><path d="M2 4h10v1h-10z" fill="#7a4e21"/><path d="M2 5h10v1h-10z" fill="#7a4e21"/><path d="M3 6h1v1h-1z" fill="#c98a4b"/><path d="M4 6h7v1h-7z" fill="#7a4e21"/><path d="M11 6h1v1h-1z" fill="#c98a4b"/><path d="M3 7h9v1h-9z" fill="#c98a4b"/><path d="M4 8h2v1h-2z" fill="#c98a4b"/><path d="M6 8h1v1h-1z" fill="#ffdc92"/><path d="M7 8h5v1h-5z" fill="#c98a4b"/><path d="M4 9h2v1h-2z" fill="#c98a4b"/><path d="M6 9h1v1h-1z" fill="#ffdc92"/><path d="M7 9h4v1h-4z" fill="#c98a4b"/><path d="M5 10h5v1h-5z" fill="#c98a4b"/><path d="M5 11h4v1h-4z" fill="#c98a4b"/><path d="M6 12h2v1h-2z" fill="#c98a4b"/><path d="M7 13h1v1h-1z" fill="#c98a4b"/></symbol><symbol id="i-hoja-px" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M7 0h1v1h-1z" fill="#4c9341"/><path d="M6 1h3v1h-3z" fill="#4c9341"/><path d="M5 2h5v1h-5z" fill="#4c9341"/><path d="M4 3h7v1h-7z" fill="#4c9341"/><path d="M3 4h3v1h-3z" fill="#4c9341"/><path d="M6 4h2v1h-2z" fill="#79b556"/><path d="M8 4h3v1h-3z" fill="#4c9341"/><path d="M3 5h8v1h-8z" fill="#4c9341"/><path d="M2 6h4v1h-4z" fill="#4c9341"/><path d="M6 6h2v1h-2z" fill="#79b556"/><path d="M8 6h4v1h-4z" fill="#4c9341"/><path d="M2 7h10v1h-10z" fill="#4c9341"/><path d="M2 8h10v1h-10z" fill="#4c9341"/><path d="M3 9h8v1h-8z" fill="#4c9341"/><path d="M4 10h6v1h-6z" fill="#4c9341"/><path d="M5 11h4v1h-4z" fill="#4c9341"/><path d="M6 12h2v1h-2z" fill="#4c9341"/><path d="M7 13h1v1h-1z" fill="#4c9341"/></symbol><symbol id="i-hoja-naranja-px" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M7 0h1v1h-1z" fill="#e08a3c"/><path d="M6 1h3v1h-3z" fill="#e08a3c"/><path d="M5 2h5v1h-5z" fill="#e08a3c"/><path d="M4 3h7v1h-7z" fill="#e08a3c"/><path d="M3 4h3v1h-3z" fill="#e08a3c"/><path d="M6 4h2v1h-2z" fill="#f2b85c"/><path d="M8 4h3v1h-3z" fill="#e08a3c"/><path d="M3 5h8v1h-8z" fill="#e08a3c"/><path d="M2 6h4v1h-4z" fill="#e08a3c"/><path d="M6 6h2v1h-2z" fill="#f2b85c"/><path d="M8 6h4v1h-4z" fill="#e08a3c"/><path d="M2 7h10v1h-10z" fill="#e08a3c"/><path d="M2 8h10v1h-10z" fill="#e08a3c"/><path d="M3 9h8v1h-8z" fill="#e08a3c"/><path d="M4 10h6v1h-6z" fill="#e08a3c"/><path d="M5 11h4v1h-4z" fill="#e08a3c"/><path d="M6 12h2v1h-2z" fill="#e08a3c"/><path d="M7 13h1v1h-1z" fill="#e08a3c"/></symbol><symbol id="i-corazon-px" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M3 0h4v1h-4z" fill="#ff9d9d"/><path d="M9 0h4v1h-4z" fill="#ff9d9d"/><path d="M1 1h2v1h-2z" fill="#ff9d9d"/><path d="M3 1h12v1h-12z" fill="#c94b4b"/><path d="M1 2h2v1h-2z" fill="#ff9d9d"/><path d="M3 2h12v1h-12z" fill="#c94b4b"/><path d="M1 3h14v1h-14z" fill="#c94b4b"/><path d="M3 4h10v1h-10z" fill="#c94b4b"/><path d="M5 5h6v1h-6z" fill="#c94b4b"/><path d="M7 6h2v1h-2z" fill="#c94b4b"/></symbol><symbol id="i-chocolate-px" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M0 0h16v1h-16z" fill="#c98a2b"/><path d="M0 1h4v1h-4z" fill="#c98a2b"/><path d="M4 1h8v1h-8z" fill="#eec06a"/><path d="M12 1h4v1h-4z" fill="#c98a2b"/><path d="M0 2h2v1h-2z" fill="#ff9d9d"/><path d="M2 2h2v1h-2z" fill="#6b4423"/><path d="M4 2h2v1h-2z" fill="#40260e"/><path d="M6 2h4v1h-4z" fill="#6b4423"/><path d="M10 2h2v1h-2z" fill="#40260e"/><path d="M12 2h4v1h-4z" fill="#6b4423"/><path d="M0 3h4v1h-4z" fill="#6b4423"/><path d="M4 3h2v1h-2z" fill="#40260e"/><path d="M6 3h4v1h-4z" fill="#6b4423"/><path d="M10 3h2v1h-2z" fill="#40260e"/><path d="M12 3h4v1h-4z" fill="#6b4423"/><path d="M0 4h4v1h-4z" fill="#6b4423"/><path d="M4 4h2v1h-2z" fill="#40260e"/><path d="M6 4h4v1h-4z" fill="#6b4423"/><path d="M10 4h2v1h-2z" fill="#40260e"/><path d="M12 4h4v1h-4z" fill="#6b4423"/><path d="M0 5h16v1h-16z" fill="#40260e"/><path d="M0 6h4v1h-4z" fill="#6b4423"/><path d="M4 6h2v1h-2z" fill="#40260e"/><path d="M6 6h4v1h-4z" fill="#6b4423"/><path d="M10 6h2v1h-2z" fill="#40260e"/><path d="M12 6h4v1h-4z" fill="#6b4423"/><path d="M0 7h4v1h-4z" fill="#6b4423"/><path d="M4 7h2v1h-2z" fill="#40260e"/><path d="M6 7h4v1h-4z" fill="#6b4423"/><path d="M10 7h2v1h-2z" fill="#40260e"/><path d="M12 7h4v1h-4z" fill="#6b4423"/></symbol></defs></svg>
+  <script>
+    const zona = document.getElementById("zona");
+    const ardilla = document.getElementById("ardilla");
+    const ardillaImg = document.getElementById("ardilla-img");
+    const color = "gray";
+    let animT = null;
+    function ardillaAnim(gif, ms) {
+      clearTimeout(animT);
+      ardillaImg.src = "assets/squirrel/" + color + "_" + gif + "_8fps.gif";
+      if (ms) animT = setTimeout(() => { ardillaImg.src = "assets/squirrel/" + color + "_idle_8fps.gif"; }, ms);
+    }
+    ardillaAnim("idle");
+    function mira(px, rectZona) {
+      const frente = ardilla.getBoundingClientRect();
+      const centro = frente.left + frente.width / 2 - rectZona.left;
+      ardillaImg.style.transform = px < centro ? "scaleX(-1)" : "";
+    }
+    const mensajito = document.getElementById("mensajito");
+
+    let enJuego = false, bellotas = 0, racha = 0, segundos = 0, vidas = 3;
+    let record = +(localStorage.getItem("ardilla_record") || 0);
+    let timers = [], joyas = [];
+    document.getElementById("record").textContent = record;
+
+    /* --- Sonidito sin archivos: WebAudio puro --- */
+    let audioCtx = null;
+    function sonido(tipo) {
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gan = audioCtx.createGain();
+        osc.connect(gan); gan.connect(audioCtx.destination);
+        osc.type = tipo === "recoge" ? "square" : "sawtooth";
+        osc.frequency.value = tipo === "recoge" ? (700 + Math.random() * 300) : tipo === "falla" ? 110 : 130;
+        gan.gain.setValueAtTime(0.07, audioCtx.currentTime);
+        gan.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.14);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+      } catch (e) { /* sin sonido no pasa nada */ }
+    }
+
+    /* --- Avisos flotantes --- */
+    function aviso(texto, donde) {
+      const m = document.createElement("span");
+      m.className = "mensaje-centro";
+      m.innerHTML = texto;
+      (donde || zona).appendChild(m);
+      setTimeout(() => m.remove(), 1400);
+    }
+    function plus(x, y, texto, clase) {
+      const p = document.createElement("span");
+      p.className = "plus" + (clase ? " " + clase : "");
+      p.textContent = texto;
+      p.style.left = x + "px";
+      p.style.top = y + "px";
+      zona.appendChild(p);
+      setTimeout(() => p.remove(), 900);
+    }
+
+    /* --- Cuenta / puntuación --- */
+    function sumar(px, py) {
+      bellotas++; racha++;
+      const combo = racha >= 6;
+      const val = (combo ? 2 : 1);
+      document.getElementById("cuenta").textContent = bellotas;
+      document.getElementById("combo").innerHTML = combo ? "×2 <svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg>" : "×1";
+      plus(px, py, "+" + val);
+      if (bellotas > record) {
+        record = bellotas;
+        localStorage.setItem("ardilla_record", record);
+        document.getElementById("record").textContent = record;
+      }
+    }
+
+    /* --- Clic en la zona: caza de bellotas --- */
+    zona.addEventListener("click", (e) => {
+      const rect = zona.getBoundingClientRect();
+      const x = e.clientX - rect.left, y = e.clientY - rect.top;
+      mira(x, rect);
+      if (!enJuego) return;
+      ardilla.style.left = Math.max(4, Math.min(92, (x / rect.width) * 100)) + "%";
+      ardilla.classList.remove("salta"); void ardilla.offsetWidth; ardilla.classList.add("salta");
+      ardillaAnim("run", 250);
+      const blancos = zona.querySelectorAll(".bellota");
+      let tocado = null;
+      blancos.forEach(b => {
+        const r = b.getBoundingClientRect();
+        const cx = r.left + r.width / 2 - rect.left, cy = r.top + r.height / 2 - rect.top;
+        if (Math.hypot(cx - x, cy - y) < 36 && !tocado) tocado = b;
+      });
+      const venenos = zona.querySelectorAll(".chocolate");
+      let mordido = null;
+      venenos.forEach(b => {
+        const r = b.getBoundingClientRect();
+        const cx = r.left + r.width / 2 - rect.left, cy = r.top + r.height / 2 - rect.top;
+        if (Math.hypot(cx - x, cy - y) < 36 && !mordido) mordido = b;
+      });
+      if (mordido) {
+        mordido.remove();
+        vidas--;
+        pintarVidas();
+        racha = 0;
+        document.getElementById("combo").textContent = "×1";
+        sonido("malo");
+        ardillaAnim("swipe", 380);
+        if (vidas <= 0) gameOver();
+        else plus(x, y - 20, "-1 HP", "malo");
+      } else if (tocado) {
+        tocado.remove();
+        sumar(x, y - 20);
+        sonido("recoge");
+        ardillaAnim("swipe", 380);
+        if (racha === 6) aviso("<svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg> ¡Combo x2!");
+        if (racha === 6 || racha === 12) {
+          const mas = racha === 12;
+          setTimeout(() => aviso(mas ? "<svg class='ico' aria-hidden='true'><use href='#i-hoja-naranja-px'/></svg> ¡Tormenta de bellotas!" : "<svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg> ¡Combo x2 activado!"), 500);
+        }
+      } else {
+        racha = 0;
+        document.getElementById("combo").textContent = "×1";
+        sonido("falla");
+      }
+    });
+
+    /* --- Bellotas y chocolates que caen --- */
+    const corazonPx = "<svg class='ico' aria-hidden='true'><use href='#i-corazon-px'/></svg>";
+    function pintarVidas() {
+      let h = "";
+      for (let i = 0; i < 3; i++)
+        h += i < vidas ? corazonPx : "<span class='vida-perdida'>" + corazonPx + "</span>";
+      document.getElementById("vidas").innerHTML = h;
+    }
+    function caerItem() {
+      if (!enJuego) return;
+      const esChoco = Math.random() < (segundos >= 30 ? 0.55 : 0.30);
+      const b = document.createElement("span");
+      b.className = esChoco ? "chocolate" : "bellota";
+      b.style.left = (5 + Math.random() * 90) + "%";
+      const dur = Math.max(1.1, 2.4 - Math.random() * 1.1);
+      b.style.animationDuration = dur + "s";
+      b.innerHTML = esChoco
+        ? "<svg class='ico' aria-hidden='true'><use href='#i-chocolate-px'/></svg>"
+        : "<svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg>";
+      zona.appendChild(b);
+      const cad = setInterval(() => {
+        if (!enJuego) return;
+        const r = b.getBoundingClientRect();
+        const zr = zona.getBoundingClientRect();
+        if (r.bottom > zr.bottom - 30) { /* cayó al suelo */
+          if (b.parentNode) b.remove();
+          clearInterval(cad);
+          if (!esChoco) {
+            racha = 0;
+            document.getElementById("combo").textContent = "×1";
+            sonido("falla");
+          }
+        }
+      }, 180);
+      const t = setTimeout(() => { if (b.parentNode) b.remove(); clearInterval(cad); }, 4200);
+      timers.push(cad, t);
+    }
+
+    /* --- Partida --- */
+    function empezar() {
+      if (enJuego) return;
+      enJuego = true; bellotas = 0; racha = 0; segundos = 0; vidas = 3;
+      document.getElementById("cuenta").textContent = 0;
+      document.getElementById("tiempo").textContent = "0s";
+      document.getElementById("combo").textContent = "×1";
+      pintarVidas();
+      document.getElementById("btn-empezar").style.display = "none";
+      document.getElementById("btn-parar").style.display = "inline-block";
+      mensajito.textContent = "¡Eso va! La ardilla va donde cliques. Cuida el combo y evita el chocolate venenoso.";
+      mensajito.classList.remove("fin");
+      aviso("¡A recolectar! <svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg>");
+      const crono = setInterval(() => {
+        segundos++;
+        document.getElementById("tiempo").textContent = segundos + "s";
+        if (segundos >= 30) {
+          caerItem();
+          if (Math.random() < 0.5) caerItem();
+        }
+      }, 780);
+      const lluvia = setInterval(() => {
+        caerItem();
+        if (Math.random() < 0.5) caerItem();
+      }, 280);
+      timers.push(crono, lluvia);
+      for (let i = 0; i < 10; i++) setTimeout(caerItem, 130 + i * 180);
+    }
+
+    function gameOver() {
+      enJuego = false;
+      timers.forEach(t => clearInterval(t));
+      timers = [];
+      document.querySelectorAll(".bellota, .chocolate").forEach(b => b.remove());
+      document.getElementById("btn-empezar").style.display = "inline-block";
+      document.getElementById("btn-parar").style.display = "none";
+      sonido("malo");
+      aviso("¡Sin vidas! <svg class='ico' aria-hidden='true'><use href='#i-corazon-px'/></svg> La despensa queda a medias… " + bellotas);
+      mensajito.classList.add("fin");
+      mensajito.textContent = bellotas >= 40 ? "¡Récord de saqueo otoñal… hasta que te envenenaste!" :
+        bellotas >= 20 ? "Buena recolecta, pero el chocolate te ganó." :
+        "El chocolate venenoso triunfó. ¡Otra ronda, campeón!";
+      document.getElementById("combo").textContent = "×1";
+    }
+
+    function parar(mostrar) {
+      enJuego = false;
+      timers.forEach(t => clearInterval(t));
+      timers = [];
+      document.querySelectorAll(".bellota, .chocolate").forEach(b => b.remove());
+      document.getElementById("btn-empezar").style.display = "inline-block";
+      document.getElementById("btn-parar").style.display = "none";
+      if (mostrar) {
+        aviso("Despensa: " + bellotas + " <svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg>");
+        mensajito.classList.add("fin");
+        mensajito.textContent = bellotas >= 40 ? "¡Récord de saqueo otoñal! Sígame retando, pa' chuzarlo." :
+          bellotas >= 20 ? "Buena recolecta. El invierno te teme un poquito." :
+          "El invierno mira tu despensa y ríe. Inténtalo otra vez, campeón.";
+      }
+      document.getElementById("combo").textContent = "×1";
+    }
+
+    /* --- Utilidades de página --- */
+    const barra = document.getElementById("barra");
+    addEventListener("scroll", () => {
+      const h = document.documentElement;
+      barra.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+      document.getElementById("arriba").classList.toggle("visible", h.scrollTop > 600);
+    }, { passive: true });
+    document.getElementById("arriba").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+    window.addEventListener("beforeunload", () => parar(false));
+  </script>
+</body>
+</html>
