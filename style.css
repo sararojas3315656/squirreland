@@ -708,15 +708,6 @@ footer .firma { font-size: 1.03rem; opacity: 0.98; line-height: 1.7; }
 }
 .mapa-bosque .motivo-map { position: absolute; font-size: 1.6rem; color: #ffd37a; opacity: 0.85; filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4)); animation: flotar-s 3.4s ease-in-out infinite; }
 @keyframes flotar-s { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-#puentes {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-.mapa-bosque .zona { z-index: 2; }
 .zona { position: absolute; width: 150px; text-align: center; z-index: 2; }
 .zona a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; }
 .zona-ico {
@@ -769,7 +760,6 @@ footer .firma { font-size: 1.03rem; opacity: 0.98; line-height: 1.7; }
   .mapa-bosque { height: auto; padding: 1.2rem 0.8rem 0.9rem; }
   .zona { position: static; width: 46%; margin: 0.7rem 1%; display: inline-block; vertical-align: top; }
   .mapa-aviso { bottom: 6px; }
-  #puentes { display: none; }
 }
 
 /* ---------- Escenas: la portada y el mapa a pantalla completa ---------- */
