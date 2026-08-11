@@ -16,8 +16,8 @@
 
   <header>
     <nav>
-      <a class="brand" href="index.html"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
-      <a class="enlace" href="index.html">Inicio</a>
+      <a class="brand" href="index.html?mapa=1"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
+      <a class="enlace" href="index.html?mapa=1">Mapa</a>
       <a class="enlace" href="datos.html">Datos</a>
       <a class="enlace" href="razas.html">Razas</a>
       <a class="enlace" href="comida.html">Comida</a>
@@ -127,6 +127,12 @@
     }
 
     function final() {
+      try {
+        const p = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
+        p.copa = true;
+        p.mejorQuiz = Math.max(p.mejorQuiz || 0, puntos);
+        localStorage.setItem("ardilla_progreso", JSON.stringify(p));
+      } catch (e) { }
       nPreg.textContent = "Resultado";
       progreso.style.width = "100%";
       const pct = puntos / PREGUNTAS.length;

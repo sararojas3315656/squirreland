@@ -693,3 +693,113 @@ footer .firma { font-size: 1.03rem; opacity: 0.98; line-height: 1.7; }
 .centrado { text-align: center; }
 .mt-2 { margin-top: 2rem; }
 .dato-chico { font-size: 0.98rem; color: #7d6848; }
+
+/* ---------- Mapa del bosque ---------- */
+.mapa-bosque {
+  position: relative;
+  height: 460px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #1d2a12 url('assets/forest/background-light-large.png') bottom center / cover no-repeat;
+  border: 3px solid rgba(122,78,33,0.35);
+  box-shadow: var(--sombra-fuerte), inset 0 0 60px rgba(20,26,12,0.35);
+  margin-bottom: 2rem;
+}
+.mapa-bosque .motivo-map { position: absolute; font-size: 1.6rem; color: #ffd37a; opacity: 0.85; filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4)); animation: flotar-s 3.4s ease-in-out infinite; }
+@keyframes flotar-s { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.zona { position: absolute; width: 150px; text-align: center; z-index: 2; }
+.zona a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; }
+.zona-ico {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: linear-gradient(180deg, #fff8e0, #f0dfae);
+  border: 3px solid #a06a30;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  display: grid; place-items: center;
+  font-size: 2.25rem; color: var(--acu);
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  position: relative;
+}
+.zona:hover .zona-ico { transform: translateY(-7px) rotate(-4deg); box-shadow: 0 12px 22px rgba(0,0,0,0.4); }
+.zona-nombre {
+  margin-top: 0.45rem; font-weight: 800; font-size: 0.98rem;
+  color: #fff8e0; line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5);
+  letter-spacing: 0.01em;
+}
+.zona-tag {
+  margin-top: 0.22rem; font-size: 0.78rem; font-weight: 700;
+  color: #ffe9a8; background: rgba(38,28,10,0.55);
+  padding: 0.16rem 0.65rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+.zona.bloqueada .zona-ico { filter: grayscale(1) brightness(0.72); color: #9a8f6e; border-color: #6b5f45; background: linear-gradient(180deg, #d9d2b4, #b5ab87); }
+.zona.bloqueada .zona-nombre { color: #cdc4a4; }
+.zona.bloqueada .zona-tag { background: rgba(20,16,6,0.6); color: #cfc6a4; }
+.zona.bloqueada .zona-ico::after {
+  content: ""; position: absolute; right: -6px; bottom: -6px; width: 26px; height: 26px;
+  background: #7a4e21; border-radius: 50%; border: 2.5px solid #fff8e0;
+  display: grid; place-items: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.45);
+}
+.zona.bloqueada .zona-ico .candado {
+  position: absolute; right: -5px; bottom: -5px; width: 19px; height: 19px;
+  color: #fff8e0; z-index: 3; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+.mapa-aviso {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%) translateY(14px);
+  background: rgba(29,20,8,0.92); color: #ffe9a8;
+  border: 2px solid var(--naranja); border-radius: 14px;
+  padding: 0.7rem 1.3rem; font-weight: 700; font-size: 0.98rem;
+  max-width: 86%; text-align: center;
+  opacity: 0; pointer-events: none; transition: all 0.3s;
+  z-index: 5; box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+}
+.mapa-aviso.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (max-width: 700px) {
+  .mapa-bosque { height: auto; padding: 1.2rem 0.8rem 0.9rem; }
+  .zona { position: static; width: 46%; margin: 0.7rem 1%; display: inline-block; vertical-align: top; }
+  .mapa-aviso { bottom: 6px; }
+}
+
+/* ---------- Escenas: la portada y el mapa a pantalla completa ---------- */
+body.escena-inicio {
+  height: 100vh;
+  overflow: hidden;
+}
+body.escena-inicio header { display: none; }
+body.escena-inicio main { padding-top: 1.2rem; padding-bottom: 0; }
+#escena-inicio .hero {
+  min-height: calc(100vh - 1.2rem);
+  align-content: center;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+#escena-inicio .hero .texto-hero { margin-bottom: 1.6rem; }
+#btn-comenzar {
+  padding: 1.05rem 2.6rem;
+  font-size: 1.28rem;
+}
+#escena-mapa {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#escena-mapa[hidden] { display: none; }
+#escena-mapa .mapa-bosque {
+  height: auto;
+  flex: 1;
+  min-height: 440px;
+}
+#escena-mapa footer {
+  margin-top: 0;
+}
+@media (max-height: 720px) {
+  #escena-inicio .hero { min-height: calc(100svh - 1.2rem); padding: 3rem 0 2.5rem; }
+}
+@media (max-width: 820px) {
+  body.escena-inicio { height: auto; overflow: auto; }
+  body.escena-inicio header { display: block; }
+}
+@media (max-width: 700px) {
+  #escena-mapa .mapa-bosque { min-height: 0; }
+}

@@ -16,8 +16,8 @@
 
   <header>
     <nav>
-      <a class="brand" href="index.html"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
-      <a class="enlace" href="index.html">Inicio</a>
+      <a class="brand" href="index.html?mapa=1"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
+      <a class="enlace" href="index.html?mapa=1">Mapa</a>
       <a class="enlace" href="datos.html">Datos</a>
       <a class="enlace" href="razas.html">Razas</a>
       <a class="enlace" href="comida.html">Comida</a>
@@ -270,6 +270,7 @@
       document.getElementById("btn-parar").style.display = "none";
       sonido("malo");
       aviso("¡Sin vidas! <svg class='ico' aria-hidden='true'><use href='#i-corazon-px'/></svg> La despensa queda a medias… " + bellotas);
+      guardarAlijo(bellotas);
       mensajito.classList.add("fin");
       mensajito.textContent = bellotas >= 40 ? "¡Récord de saqueo otoñal… hasta que te envenenaste!" :
         bellotas >= 20 ? "Buena recolecta, pero el chocolate te ganó." :
@@ -284,6 +285,7 @@
       document.querySelectorAll(".bellota, .chocolate").forEach(b => b.remove());
       document.getElementById("btn-empezar").style.display = "inline-block";
       document.getElementById("btn-parar").style.display = "none";
+      guardarAlijo(bellotas);
       if (mostrar) {
         aviso("Despensa: " + bellotas + " <svg class='ico' aria-hidden='true'><use href='#i-bellota-px'/></svg>");
         mensajito.classList.add("fin");
@@ -303,6 +305,16 @@
     }, { passive: true });
     document.getElementById("arriba").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
     window.addEventListener("beforeunload", () => parar(false));
+
+    /* --- Progreso para el mapa del bosque --- */
+    function guardarAlijo(n) {
+      try {
+        const p = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
+        p.alijo = true;
+        p.bellotas = (p.bellotas || 0) + Math.max(0, n);
+        localStorage.setItem("ardilla_progreso", JSON.stringify(p));
+      } catch (e) { }
+    }
   </script>
 </body>
 </html>

@@ -16,8 +16,8 @@
 
   <header>
     <nav>
-      <a class="brand" href="index.html"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
-      <a class="enlace" href="index.html">Inicio</a>
+      <a class="brand" href="index.html?mapa=1"><span class="logo-emoji"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span> La Madriguera Ardilla</a>
+      <a class="enlace" href="index.html?mapa=1">Mapa</a>
       <a class="enlace" href="datos.html">Datos</a>
       <a class="enlace" href="razas.html">Razas</a>
       <a class="enlace" href="comida.html">Comida</a>
@@ -83,6 +83,11 @@
       return (aleatorio ? "<svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg> <svg class='ico' aria-hidden='true'><use href='#i-flecha'/></svg> " : "") + "<strong>" + d[1] + ".</strong> " + d[2];
     }
     function datoAleatorio() {
+      try {
+        const p = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
+        p.lab = (p.lab || 0) + 1;
+        localStorage.setItem("ardilla_progreso", JSON.stringify(p));
+      } catch (e) { }
       const el = document.getElementById("dato-aleatorio");
       el.classList.remove("entra");
       void el.offsetWidth;
