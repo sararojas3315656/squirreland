@@ -113,6 +113,10 @@
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="i-trofeo" viewBox="0 0 24 24"><path d="M7 3.6 H17 V8 C17 12 14 14.6 12 14.6 C10 14.6 7 12 7 8 Z" fill="#e8b34b" stroke="#9a6b1f" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 5 H4.2 V8 C4.2 10.6 5.8 12.4 7.6 12.8 M17 5 H19.8 V8 C19.8 10.6 18.2 12.4 16.4 12.8" fill="none" stroke="#d99c2b" stroke-width="1.7" stroke-linecap="round"/><path d="M12 14.6 V18.4 M8.6 20.4 H15.4 M12 18.4 L12 20.4" stroke="#c98a4b" stroke-width="2" stroke-linecap="round" fill="none"/></symbol><symbol id="i-matraz" viewBox="0 0 24 24"><path d="M9.6 3.4 H14.4 M11.2 3.4 V8 L14.6 20.6 C14.9 21.4 14.4 22 13.5 22 H10.5 C9.6 22 9.1 21.4 9.4 20.6 L12.8 8" fill="none" stroke="#3f7fb8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.2 15.4 H14.8" stroke="#57b1e8" stroke-width="2" stroke-linecap="round"/><path d="M14.8 12.2 H11.2" stroke="#57b1e8" stroke-width="1.6" stroke-linecap="round"/><circle cx="13.6" cy="18.6" r="1.1" fill="#8fd0f2"/></symbol><symbol id="i-candado" viewBox="0 0 24 24"><rect x="5.4" y="10.4" width="13.2" height="9.6" rx="2.4" fill="#a06a30" stroke="#7a4e21" stroke-width="1.6"/><path d="M8 10.4 V8.4 C8 5.8 9.8 4.2 12 4.2 C14.2 4.2 16 5.8 16 8.4 V10.4" fill="none" stroke="#7a4e21" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14.6" r="1.7" fill="#fff6dd"/><path d="M12 16.2 V18" stroke="#7a4e21" stroke-width="1.8" stroke-linecap="round"/></symbol><symbol id="i-quiz" viewBox="0 0 24 24"><path d="M8.6 8.8 C 8.6 6.2 10.2 4.8 12 4.8 C 13.9 4.8 15.5 6.3 15.5 8.4 C 15.5 10.4 14.6 11.3 13.2 12.4 C 11.8 13.5 11.6 14.3 11.6 15.6 L 11.6 16.2" fill="none" stroke="#3f2d18" stroke-width="2.6" stroke-linecap="round"/><circle cx="12" cy="19.4" r="1.4" fill="#3f2d18"/></symbol></defs></svg>
 
     <div class="mapa-bosque revelar" id="mapa">
+      <svg id="puentes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path class="puente-sombra" d="" fill="none" stroke="#6b4a22" stroke-opacity="0.55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.8 1.1"/>
+        <path class="puente-tabla" d="" fill="none" stroke="#eccb8d" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      </svg>
       <span class="motivo-map" style="left:47%;top:3%"><svg class='ico' aria-hidden='true'><use href='#i-hoja-arce'/></svg></span>
       <span class="motivo-map" style="left:91%;top:58%"><svg class='ico' aria-hidden='true'><use href='#i-cacahuete'/></svg></span>
       <span class="motivo-map" style="left:7%;top:76%"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span>
@@ -214,6 +218,7 @@
       m.hidden = false;
       scrollTo(0, 0);
       document.querySelectorAll("#escena-mapa .revelar").forEach(el => obs.observe(el));
+      setTimeout(dibujarPuentes, 250);
     }
     function volverPortada() {
       document.body.classList.add("escena-inicio");
@@ -230,6 +235,36 @@
       volverPortada();
     });
     if (new URLSearchParams(location.search).get("mapa") === "1") comenzar();
+
+    /* Puentes entre los lugares del bosque: un sendero que visita cada círculo */
+    function dibujarPuentes() {
+      const mapa = document.getElementById("mapa");
+      const svg = document.getElementById("puentes");
+      if (!mapa || !svg || matchMedia("(max-width: 700px)").matches) return;
+      const m = mapa.getBoundingClientRect();
+      const zonas = [...document.querySelectorAll(".zona")];
+      const pts = zonas.map(z => {
+        const r = z.querySelector(".zona-ico").getBoundingClientRect();
+        return { x: (r.left + r.width / 2 - m.left) / m.width * 100, y: (r.top + r.height / 2 - m.top) / m.height * 100 };
+      });
+      const visit = new Set(), orden = [];
+      for (let act = 0; orden.length < pts.length; ) {
+        visit.add(act);
+        orden.push(act);
+        let mejor = null, distMin = Infinity;
+        for (let i = 0; i < pts.length; i++) {
+          if (visit.has(i)) continue;
+          const d = (pts[i].x - pts[act].x) ** 2 + (pts[i].y - pts[act].y) ** 2;
+          if (d < distMin) { distMin = d; mejor = i; }
+        }
+        act = mejor;
+      }
+      const d = orden.map((i, k) => (k === 0 ? "M" : "L") + pts[i].x.toFixed(2) + " " + pts[i].y.toFixed(2)).join(" ");
+      svg.querySelectorAll("path").forEach(p => p.setAttribute("d", d));
+    }
+    addEventListener("resize", () => {
+      if (document.body.classList.contains("ver-mapa")) dibujarPuentes();
+    });
 
     /* --- Mapa del bosque: lugares bloqueados --- */
     const PROG = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
