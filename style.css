@@ -787,6 +787,32 @@ body.escena-inicio main { padding-top: 1.2rem; padding-bottom: 0; }
 }
 #escena-mapa[hidden] { display: none; }
 /* El bosque a pantalla completa: solo el mapa, nada más */
+#escena-inicio { transition: opacity 0.45s ease, transform 0.45s ease; }
+body.escena-inicio.saliendo #escena-inicio {
+  opacity: 0;
+  transform: translateY(-24px);
+  pointer-events: none;
+}
+#escena-inicio.listilla {
+  animation: portada-vuelve 0.5s ease both;
+}
+@keyframes portada-vuelve {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#escena-mapa.entrando {
+  animation: bosque-entra 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes bosque-entra {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 1; transform: scale(1); }
+}
+#escena-mapa.saliendo {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  opacity: 0;
+  transform: scale(0.97);
+  pointer-events: none;
+}
 body.ver-mapa header { display: none; }
 body.ver-mapa main { max-width: none; padding: 0; }
 #escena-mapa .mapa-bosque {

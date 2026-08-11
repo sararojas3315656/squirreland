@@ -206,30 +206,43 @@
     document.querySelectorAll(".revelar").forEach(el => obs.observe(el));
 
     /* Escenas: la portada sube la puerta y el bosque ocupa toda la pantalla */
-    function comenzar() {
-      document.body.classList.remove("escena-inicio");
+    function cambiar() {
+      document.body.classList.remove("escena-inicio", "saliendo");
       document.body.classList.add("ver-mapa");
-      document.getElementById("escena-inicio").hidden = true;
+      const portada = document.getElementById("escena-inicio");
+      portada.hidden = true;
+      portada.classList.remove("listilla");
       const m = document.getElementById("escena-mapa");
+      m.classList.remove("saliendo", "entrando");
       m.hidden = false;
+      m.classList.add("entrando");
       scrollTo(0, 0);
       document.querySelectorAll("#escena-mapa .revelar").forEach(el => obs.observe(el));
     }
+    function comenzar() {
+      if (document.body.classList.contains("saliendo")) return;
+      document.body.classList.add("saliendo");
+      setTimeout(cambiar, 430);
+    }
     function volverPortada() {
+      const m = document.getElementById("escena-mapa");
       document.body.classList.add("escena-inicio");
       document.body.classList.remove("ver-mapa");
-      document.getElementById("escena-inicio").hidden = false;
-      const m = document.getElementById("escena-mapa");
+      document.getElementById("escena-inicio").classList.add("listilla");
+      m.classList.add("saliendo");
       document.querySelectorAll("#escena-mapa .revelar").forEach(el => obs.unobserve(el));
-      m.hidden = true;
-      scrollTo(0, 0);
+      setTimeout(() => {
+        m.hidden = true;
+        m.classList.remove("saliendo", "entrando");
+        document.getElementById("escena-inicio").hidden = false;
+      }, 330);
     }
     document.getElementById("btn-comenzar").addEventListener("click", comenzar);
     document.getElementById("zona-madriguera").querySelector("a").addEventListener("click", e => {
       e.preventDefault();
       volverPortada();
     });
-    if (new URLSearchParams(location.search).get("mapa") === "1") comenzar();
+    if (new URLSearchParams(location.search).get("mapa") === "1") cambiar();
 
     /* --- Mapa del bosque: lugares bloqueados --- */
     const PROG = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
