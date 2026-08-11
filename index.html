@@ -109,8 +109,6 @@
     </div>
 
     <div id="escena-mapa" hidden>
-    <h2 class="revelar" style="margin-top:2.8rem"><span class="emoji-grande"><svg class='ico' aria-hidden='true'><use href='#i-arbol'/></svg></span> El bosque, lugar por lugar</h2>
-    <p class="sub-pagina">Adiós menús: esto es un mapa. Entra a los lugares, pasea por el bosque y descubre tres rincones escondidos que se desbloquean jugando.</p>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="i-trofeo" viewBox="0 0 24 24"><path d="M7 3.6 H17 V8 C17 12 14 14.6 12 14.6 C10 14.6 7 12 7 8 Z" fill="#e8b34b" stroke="#9a6b1f" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 5 H4.2 V8 C4.2 10.6 5.8 12.4 7.6 12.8 M17 5 H19.8 V8 C19.8 10.6 18.2 12.4 16.4 12.8" fill="none" stroke="#d99c2b" stroke-width="1.7" stroke-linecap="round"/><path d="M12 14.6 V18.4 M8.6 20.4 H15.4 M12 18.4 L12 20.4" stroke="#c98a4b" stroke-width="2" stroke-linecap="round" fill="none"/></symbol><symbol id="i-matraz" viewBox="0 0 24 24"><path d="M9.6 3.4 H14.4 M11.2 3.4 V8 L14.6 20.6 C14.9 21.4 14.4 22 13.5 22 H10.5 C9.6 22 9.1 21.4 9.4 20.6 L12.8 8" fill="none" stroke="#3f7fb8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.2 15.4 H14.8" stroke="#57b1e8" stroke-width="2" stroke-linecap="round"/><path d="M14.8 12.2 H11.2" stroke="#57b1e8" stroke-width="1.6" stroke-linecap="round"/><circle cx="13.6" cy="18.6" r="1.1" fill="#8fd0f2"/></symbol><symbol id="i-candado" viewBox="0 0 24 24"><rect x="5.4" y="10.4" width="13.2" height="9.6" rx="2.4" fill="#a06a30" stroke="#7a4e21" stroke-width="1.6"/><path d="M8 10.4 V8.4 C8 5.8 9.8 4.2 12 4.2 C14.2 4.2 16 5.8 16 8.4 V10.4" fill="none" stroke="#7a4e21" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14.6" r="1.7" fill="#fff6dd"/><path d="M12 16.2 V18" stroke="#7a4e21" stroke-width="1.8" stroke-linecap="round"/></symbol></defs></svg>
 
@@ -119,7 +117,7 @@
       <span class="motivo-map" style="left:91%;top:58%"><svg class='ico' aria-hidden='true'><use href='#i-cacahuete'/></svg></span>
       <span class="motivo-map" style="left:7%;top:76%"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span>
 
-      <div class="zona" style="left:5%;top:13%">
+      <div class="zona" id="zona-madriguera" style="left:5%;top:13%">
         <a href="#top">
           <span class="zona-ico"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg></span>
           <span class="zona-nombre">La madriguera</span>
@@ -178,16 +176,6 @@
 
       <div class="mapa-aviso" id="mapa-aviso" role="status"></div>
     </div>
-
-    <footer>
-      <div class="pista">
-        <span class="motivo" style="left:4%"><svg class='ico' aria-hidden='true'><use href='#i-bellota'/></svg></span>
-        <span class="motivo" style="left:38%;animation-delay:0.8s"><svg class='ico' aria-hidden='true'><use href='#i-hoja'/></svg></span>
-        <span class="motivo" style="right:10%;animation-delay:1.6s"><svg class='ico' aria-hidden='true'><use href='#i-cacahuete'/></svg></span>
-        <span class="corredor"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg><svg class='ico' aria-hidden='true'><use href='#i-viento'/></svg></span>
-      </div>
-      <p class="firma"><svg class='ico' aria-hidden='true'><use href='#i-ardilla'/></svg> La Madriguera Ardilla — hecho con bellotas, cero arañas en la RAM y cero gatos.<br>Toda la info es para entretenimiento: en la vida real, admira a la ardilla de lejos. Y si pasas por aquí, no te vayas sin un guaro en cuadra picha.</p>
-    </footer>
     </div>
   </main>
 
@@ -210,15 +198,30 @@
     }, { threshold: 0.15 });
     document.querySelectorAll(".revelar").forEach(el => obs.observe(el));
 
-    /* Escenas: la portada sube la puerta y el mapa ocupa el bosque */
+    /* Escenas: la portada sube la puerta y el bosque ocupa toda la pantalla */
     function comenzar() {
       document.body.classList.remove("escena-inicio");
+      document.body.classList.add("ver-mapa");
+      document.getElementById("escena-inicio").hidden = true;
       const m = document.getElementById("escena-mapa");
       m.hidden = false;
       scrollTo(0, 0);
       document.querySelectorAll("#escena-mapa .revelar").forEach(el => obs.observe(el));
     }
+    function volverPortada() {
+      document.body.classList.add("escena-inicio");
+      document.body.classList.remove("ver-mapa");
+      document.getElementById("escena-inicio").hidden = false;
+      const m = document.getElementById("escena-mapa");
+      document.querySelectorAll("#escena-mapa .revelar").forEach(el => obs.unobserve(el));
+      m.hidden = true;
+      scrollTo(0, 0);
+    }
     document.getElementById("btn-comenzar").addEventListener("click", comenzar);
+    document.getElementById("zona-madriguera").querySelector("a").addEventListener("click", e => {
+      e.preventDefault();
+      volverPortada();
+    });
     if (new URLSearchParams(location.search).get("mapa") === "1") comenzar();
 
     /* --- Mapa del bosque: lugares bloqueados --- */
