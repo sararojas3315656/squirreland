@@ -693,6 +693,7 @@ footer .firma { font-size: 1.03rem; opacity: 0.98; line-height: 1.7; }
 .centrado { text-align: center; }
 .mt-2 { margin-top: 2rem; }
 .dato-chico { font-size: 0.98rem; color: #7d6848; }
+.btn-volver { margin-bottom: 1.6rem; }
 
 /* ---------- Mapa del bosque ---------- */
 .mapa-bosque {
