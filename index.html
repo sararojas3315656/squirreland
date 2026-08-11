@@ -242,7 +242,10 @@
       e.preventDefault();
       volverPortada();
     });
-    if (new URLSearchParams(location.search).get("mapa") === "1") cambiar();
+    if (new URLSearchParams(location.search).get("mapa") === "1") {
+      history.replaceState(null, "", location.pathname);
+      cambiar();
+    }
 
     /* --- Mapa del bosque: lugares bloqueados --- */
     const PROG = JSON.parse(localStorage.getItem("ardilla_progreso") || "{}");
